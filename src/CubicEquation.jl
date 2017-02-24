@@ -8,7 +8,7 @@ end
 function (solver::Solver)(a::Real, b::Real, c::Real, d::Real)
     if a == 0.0
         println("Can't solve. a = 0")
-        return 0
+        return 0.0
     end
     f = (3c/a - (b/a)^2) / 3
     g = (2(b/a)^3 - (9*b*c/a^2) + 27d/a) / 27
@@ -22,6 +22,7 @@ function (solver::Solver)(a::Real, b::Real, c::Real, d::Real)
         return one_real_root(a, b, g, h)
     end
 
+    return Base.error("Can't solve when a=$(a) b=$(b) c=$(c) d=$(d)")
 end
 
 function three_real_root(a::Real, b::Real, g::Float64, h::Float64)
