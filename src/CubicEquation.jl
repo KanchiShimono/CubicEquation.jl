@@ -7,8 +7,7 @@ end
 
 function (solver::Solver)(a::Real, b::Real, c::Real, d::Real)
     if a == 0.0
-        println("Can't solve. a = 0")
-        return 0.0
+        return Base.error("Can't solve. a=0 in a*x³ + b*x² + c*x + d =0")
     end
     f = (3c/a - (b/a)^2) / 3
     g = (2(b/a)^3 - (9*b*c/a^2) + 27d/a) / 27
