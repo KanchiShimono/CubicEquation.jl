@@ -1,12 +1,24 @@
 using CubicEquation
 using Base.Test
 
-@testset "solve" begin
-    Base.info("Testing solver...")
-    solver = Solver()
-    @test isapprox(solver(1.0,-3.0,3.0,-1.0), ones(3))
-    @test isapprox(solver(2.0,-3.0,-5.0,6.0), [-1.5,1.0,2.0])
-    @test isapprox(solver(1.0,1.0,1.0,-3.0), [1.0,-1.0-im*√(2),-1.0+im*√(2)])
-    @test_throws ErrorException solver(0.0,1.0,1.0,-3.0)
-    Base.info("Done testing solver.")
+anyerrors = false
+
+test_cases = [
+              "cubicequation.jl"]
+             
+
+Base.info("Running tests...")
+
+for case in test_cases
+    try
+        include(case)
+        println("\t\033[1m\033[32mPASSED\033[0m: $(case)")
+    catch e
+        anyerrors = true
+        println("\t\033[1m\033[31mFAILED\033[0m: $(case)")
+    end
+end
+
+if anyerrors
+    throw("Test failed")
 end
