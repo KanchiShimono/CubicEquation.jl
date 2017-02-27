@@ -4,7 +4,8 @@ using Base.Test
 anyerrors = false
 
 test_cases = [
-              "cubicequation.jl"]
+              "cubicequation.jl",
+              "quadraticequation.jl"]
              
 
 Base.info("Running tests...")
