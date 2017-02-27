@@ -49,4 +49,21 @@ function one_real_root(a::Real, b::Real, g::Float64, h::Float64)
     return [x1, x2, x3]
 end
 
+function (solver::Solver)(a::Real, b::Real, c::Real)
+    if a == zero(typeof(a))
+        return Base.error("Can't solve. a=0 in a*x² + b*x + c = 0")
+    end
+
+    # Discriminant for quadratic equation
+    D = b^2 - 4*a*c
+
+    if D >= zero(typeof(D))
+        return [(-b - √(D)) / 2a, (-b + √(D)) / 2a]
+    elseif D < zero(typeof(D))
+        return [(-b - √(-D)*im) / 2a, (-b + √(-D)*im) / 2a]
+    else
+        return Base.error("Can't solve when a=$(a) b=$(b) c=$(c)")
+    end
+end
+
 end #end module
