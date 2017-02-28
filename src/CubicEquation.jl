@@ -46,7 +46,7 @@ function one_real_root(a::Real, b::Real, g::Float64, h::Float64)
     x1 = (S + U) - (b/3a)
     x2 = -(S + U)/2 - (b/3a) - im*(S-U)*sqrt(3) / 2
     x3 = -(S + U)/2 - (b/3a) + im*(S-U)*sqrt(3) / 2
-    return [x1, x2, x3]
+    return Union{Real,Complex}[x1, x2, x3]
 end
 
 function (solver::Solver)(a::Real, b::Real, c::Real)
